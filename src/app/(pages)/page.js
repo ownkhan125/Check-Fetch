@@ -27,8 +27,6 @@ export default function page() {
       console.log(data);
       queryClient.invalidateQueries("blog");
     }
-
-
   });
 
   const handleSubmit = () => {
@@ -98,10 +96,10 @@ export default function page() {
           >
             Previous
           </button>
-          <span>Page {currentPage}</span>
+          <span>Page {currentPage} {data?.length}</span>
           <button
             className="bg-gray-300 p-2 rounded"
-            disabled={data?.length <= 10} // Disable if fewer than pageSize items
+            disabled={data?.length < 10}
             onClick={() => setCurrentPage((prev) => prev + 1)}
           >
             Next

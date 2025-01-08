@@ -11,16 +11,22 @@ const mockProducts = [
     { id: 8, name: "pak", price: 600 },
     { id: 9, name: "check", price: 500 },
     { id: 10, name: "china", price: 300 },
-    
+    { id: 10, name: "china", price: 300 },
+    { id: 10, name: "china", price: 300 },
+
 ];
 
 // Handle GET requests
 export async function GET(req) {
     try {
         const { searchParams } = new URL(req?.url); // Get URL search params
+        if (!searchParams || [...searchParams].length === 0) {
+            return NextResponse.json(mockProducts);
+        }
+
         const columnFilters = searchParams?.get("columnFilters")?.toLowerCase()?.trim();
         const sortBy = searchParams?.get("sortBy")?.toLowerCase()?.trim();
-        const page = parseInt(searchParams.get("page"));
+        const page = parseInt(searchParams?.get("page"));
 
         // Pagination logic
         const startIndex = (page - 1) * 10;
