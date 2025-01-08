@@ -11,4 +11,14 @@ const compat = new FlatCompat({
 
 const eslintConfig = [...compat.extends("next/core-web-vitals")];
 
+module.exports = {
+  extends: ["eslint:recommended", "plugin:react/recommended"],
+  plugins: ["react-hooks"],
+  rules: {
+    "react-hooks/rules-of-hooks": "error", // Validates proper usage of hooks
+    "react-hooks/exhaustive-deps": "warn" // Warns for missing dependencies in useEffect
+  },
+};
+
+
 export default eslintConfig;
